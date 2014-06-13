@@ -14,7 +14,7 @@ var memory = require('feathers-memory');
 
 var app = feathers()
     .use('/users', memory)
-    .configure(errors());
+    .configure(feathers.errors());
 ```
 
 #### With Express
