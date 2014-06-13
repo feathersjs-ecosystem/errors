@@ -28,7 +28,7 @@ var app = express()
     .use(errors.handler);
 ```
 
-**Pro Tip:** Just like express middleware **order matters**. So your error handling should typically be configured last.
+**Pro Tip:** Just like express middleware, **order matters**. So your error handling should typically be configured last.
 
 ## Documentation
 
