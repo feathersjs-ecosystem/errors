@@ -16,7 +16,7 @@ describe('Feathers errors', function () {
   it('exposes the api properly', function () {
     assert.equal(typeof errors.types, 'object', 'exposes error types');
     assert.equal(typeof errors.handler, 'function', 'exposes error handler');
-    assert.equal(typeof errors.missing, 'function', 'exposes 404 handler');
+    assert.equal(typeof errors.fourOhFour, 'function', 'exposes 404 handler');
   });
 
   it('initializes errors object', function () {
