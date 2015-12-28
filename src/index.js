@@ -38,7 +38,6 @@ function AbstractError(klass) {
 
     if (data && data.errors) {
       errors = data.errors;
-      delete data.errors;
     }
 
     // NOTE (EK): Babel doesn't support this so
