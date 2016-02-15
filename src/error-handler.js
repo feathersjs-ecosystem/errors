@@ -1,6 +1,6 @@
 // jshint unused:false
 import path from 'path';
-import errors from 'feathers-errors';
+import errors from './index';
 
 export default function(app) {
   return function(error, req, res, next) {
