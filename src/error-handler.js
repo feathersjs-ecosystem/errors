@@ -3,7 +3,7 @@ import path from 'path';
 import errors from './index';
 
 const defaults = {
-  public: './public'
+  public: path.resolve(__dirname, './public')
 };
 
 export default function(options = {}) {
@@ -31,7 +31,7 @@ export default function(options = {}) {
     res.format({
       'text/html': function() {
         const file = code === 404 ? '404.html' : '500.html';
-        res.sendFile(path.join(options.public, file));
+        res.sendFile(path.join(path.resolve(options.public, file)));
       },
 
       'application/json': function () {
