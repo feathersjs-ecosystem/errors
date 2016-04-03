@@ -82,7 +82,13 @@ describe('feathers-errors', () => {
     describe('text/html format', () => {
       it('serves a 404.html', done => {
         fs.readFile(join(__dirname, '..', 'src', 'public', '404.html'), function(err, html) {
-          request('http://localhost:5050/path/to/nowhere', (error, res, body) => {
+          request({
+            url: 'http://localhost:5050/path/to/nowhere',
+            headers: {
+              'Content-Type': 'text/html',
+              'Accept': 'text/html'
+            }
+          }, (error, res, body) => {
             assert.equal(res.statusCode, 404);
             assert.equal(html.toString(), body);
             done();
@@ -92,8 +98,44 @@ describe('feathers-errors', () => {
 
       it('serves a 500.html', done => {
         fs.readFile(join(__dirname, '..', 'src', 'public', 'default.html'), function(err, html) {
-          request('http://localhost:5050/error', (error, res, body) => {
+          request({
+            url: 'http://localhost:5050/error',
+            headers: {
+              'Content-Type': 'text/html',
+              'Accept': 'text/html'
+            }
+          }, (error, res, body) => {
             assert.equal(res.statusCode, 500);
+            assert.equal(html.toString(), body);
+            done();
+          });
+        });
+      });
+
+      it('returns html when Content-Type header is set', done => {
+        fs.readFile(join(__dirname, '..', 'src', 'public', '404.html'), function(err, html) {
+          request({
+            url: 'http://localhost:5050/path/to/nowhere',
+            headers: {
+              'Content-Type': 'text/html'
+            }
+          }, (error, res, body) => {
+            assert.equal(res.statusCode, 404);
+            assert.equal(html.toString(), body);
+            done();
+          });
+        });
+      });
+
+      it('returns html when Accept header is set', done => {
+        fs.readFile(join(__dirname, '..', 'src', 'public', '404.html'), function(err, html) {
+          request({
+            url: 'http://localhost:5050/path/to/nowhere',
+            headers: {
+              'Accept': 'text/html'
+            }
+          }, (error, res, body) => {
+            assert.equal(res.statusCode, 404);
             assert.equal(html.toString(), body);
             done();
           });
@@ -105,6 +147,10 @@ describe('feathers-errors', () => {
       it('500', done => {
         request({
           url: 'http://localhost:5050/error',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
           json: true
         }, (error, res, body) => {
           assert.equal(res.statusCode, 500);
@@ -123,6 +169,10 @@ describe('feathers-errors', () => {
       it('404', done => {
         request({
           url: 'http://localhost:5050/path/to/nowhere',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
           json: true
         }, (error, res, body) => {
           assert.equal(res.statusCode, 404);
@@ -139,6 +189,10 @@ describe('feathers-errors', () => {
       it('400', done => {
         request({
           url: 'http://localhost:5050/bad-request',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
           json: true
         }, (error, res, body) => {
           assert.equal(res.statusCode, 400);
@@ -157,6 +211,81 @@ describe('feathers-errors', () => {
           });
           done();
         });
+      });
+
+      it('returns JSON when only Content-Type header is set', done => {
+        request({
+          url: 'http://localhost:5050/bad-request',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          json: true
+        }, (error, res, body) => {
+          assert.equal(res.statusCode, 400);
+          assert.deepEqual(body, { name: 'BadRequest',
+            message: 'Invalid Password',
+            code: 400,
+            className: 'bad-request',
+            data: {
+              message: 'Invalid Password'
+            },
+            errors: [{
+              path: 'password',
+              value: null,
+              message: `'password' cannot be 'null'`
+            }]
+          });
+          done();
+        });
+      });
+
+      it('returns JSON when only Accept header is set', done => {
+        request({
+          url: 'http://localhost:5050/bad-request',
+          headers: {
+            'Accept': 'application/json'
+          },
+          json: true
+        }, (error, res, body) => {
+          assert.equal(res.statusCode, 400);
+          assert.deepEqual(body, { name: 'BadRequest',
+            message: 'Invalid Password',
+            code: 400,
+            className: 'bad-request',
+            data: {
+              message: 'Invalid Password'
+            },
+            errors: [{
+              path: 'password',
+              value: null,
+              message: `'password' cannot be 'null'`
+            }]
+          });
+          done();
+        });
+      });
+    });
+
+    it('returns JSON by default', done => {
+      request('http://localhost:5050/bad-request', (error, res, body) => {
+        const expected = JSON.stringify({
+          name: 'BadRequest',
+          message: 'Invalid Password',
+          code: 400,
+          className: 'bad-request',
+          data: {
+            message: 'Invalid Password'
+          },
+          errors: [{
+            path: 'password',
+            value: null,
+            message: `'password' cannot be 'null'`
+          }]
+        });
+
+        assert.equal(res.statusCode, 400);
+        assert.deepEqual(body, expected);
+        done();
       });
     });
   });
