@@ -45,7 +45,7 @@
     "debug": "^2.2.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.3.17",
+    "babel-cli": "^6.8.0",
     "babel-core": "^6.3.17",
     "babel-plugin-add-module-exports": "^0.1.1",
     "babel-plugin-transform-builtin-extend": "^1.1.0",
