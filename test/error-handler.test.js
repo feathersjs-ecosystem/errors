@@ -101,7 +101,7 @@ describe('error-handler', () => {
           code: 500,
           className: 'general-error',
           data: {},
-          errors: {}
+          errors: []
         });
         request(options, (error, res, body) => {
           expect(body).to.deep.equal(expected);
@@ -158,7 +158,7 @@ describe('error-handler', () => {
             code: 500,
             className: 'general-error',
             data: {},
-            errors: {}
+            errors: []
           });
           done();
         });
@@ -250,7 +250,7 @@ describe('error-handler', () => {
             code: 500,
             className: 'general-error',
             data: {},
-            errors: {}
+            errors: []
           });
           done();
         });
@@ -270,7 +270,7 @@ describe('error-handler', () => {
             message: 'File not found',
             code: 404,
             className: 'not-found',
-            errors: {}
+            errors: []
           });
           done();
         });
