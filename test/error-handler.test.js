@@ -124,7 +124,8 @@ describe('error-handler', () => {
           next(e);
         })
         .get('/bad-request', function (req, res, next) {
-          next(new errors.BadRequest({
+          next(new 
+               .BadRequest({
             message: 'Invalid Password',
             errors: [{
               path: 'password',
@@ -158,7 +159,7 @@ describe('error-handler', () => {
             code: 500,
             className: 'general-error',
             data: {},
-            errors: {}
+            errors: []
           });
           done();
         });
@@ -250,7 +251,7 @@ describe('error-handler', () => {
             code: 500,
             className: 'general-error',
             data: {},
-            errors: {}
+            errors: []
           });
           done();
         });
@@ -270,7 +271,7 @@ describe('error-handler', () => {
             message: 'File not found',
             code: 404,
             className: 'not-found',
-            errors: {}
+            errors: []
           });
           done();
         });
