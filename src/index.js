@@ -33,7 +33,7 @@ class FeathersError extends Error {
       // NOTE(EK): To make sure that we are not messing
       // with immutable data, just make a copy.
       // https://github.com/feathersjs/feathers-errors/issues/19
-      newData = Object.assign({}, data);
+      newData = Array.isArray(data) ? [].concat(data) : Object.assign({}, data);
 
       if (newData.errors) {
         errors = newData.errors;
