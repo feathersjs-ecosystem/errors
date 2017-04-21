@@ -1,6 +1,6 @@
 /* eslint-disable handle-callback-err, no-unused-expressions */
 
-import feathers from 'feathers';
+import feathers from 'feathers';e
 import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
@@ -102,7 +102,7 @@ describe('error-handler', () => {
           code: 500,
           className: 'general-error',
           data: {},
-          errors: {}
+          errors: []
         });
         request(options, (error, res, body) => {
           expect(body).to.deep.equal(expected);
@@ -125,7 +125,8 @@ describe('error-handler', () => {
           next(e);
         })
         .get('/bad-request', function (req, res, next) {
-          next(new errors.BadRequest({
+          next(new 
+               .BadRequest({
             message: 'Invalid Password',
             errors: [{
               path: 'password',
@@ -159,7 +160,7 @@ describe('error-handler', () => {
             code: 500,
             className: 'general-error',
             data: {},
-            errors: {}
+            errors: []
           });
           done();
         });
@@ -251,7 +252,7 @@ describe('error-handler', () => {
             code: 500,
             className: 'general-error',
             data: {},
-            errors: {}
+            errors: []
           });
           done();
         });
@@ -271,7 +272,7 @@ describe('error-handler', () => {
             message: 'File not found',
             code: 404,
             className: 'not-found',
-            errors: {}
+            errors: []
           });
           done();
         });
