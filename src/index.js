@@ -52,7 +52,7 @@ class FeathersError extends Error {
     this.code = code;
     this.className = className;
     this.data = newData;
-    this.errors = errors || {};
+    this.errors = errors || [];
 
     debug(`${this.name}(${this.code}): ${this.message}`);
   }
