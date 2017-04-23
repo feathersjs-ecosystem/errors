@@ -288,5 +288,18 @@ describe('feathers-errors', () => {
       assert.equal(error.data.errors, undefined);
       assert.deepEqual(error.data, {foo: 'bar'});
     });
+
+    it('allows arrays as data', () => {
+      var data = [
+        {
+          hello: 'world'
+        }
+      ];
+
+      var error = new errors.GeneralError('Custom Error', data);
+      assert.equal(error.data.errors, undefined);
+      assert.ok(Array.isArray(error.data));
+      assert.deepEqual(error.data, data);
+    });
   });
 });
