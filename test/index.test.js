@@ -164,7 +164,7 @@ describe('feathers-errors', () => {
       assert.notEqual(typeof errors[503], 'undefined', 'has Unavailable alias');
     });
 
-    it('instanatiates every error', () => {
+    it('instantiates every error', () => {
       Object.keys(types).forEach(name => {
         const E = types[name];
         if (E) {
