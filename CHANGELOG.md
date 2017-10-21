@@ -1,5 +1,18 @@
 # Change Log
 
+## [v3.0.0-pre.1](https://github.com/feathersjs/errors/tree/v3.0.0-pre.1) (2017-10-21)
+[Full Changelog](https://github.com/feathersjs/errors/compare/v2.9.2...v3.0.0-pre.1)
+
+**Closed issues:**
+
+- \[Proposal\] use verror [\#88](https://github.com/feathersjs/errors/issues/88)
+
+**Merged pull requests:**
+
+- Update to new plugin infrastructure and npm scope [\#92](https://github.com/feathersjs/errors/pull/92) ([daffl](https://github.com/daffl))
+- Update mocha to the latest version 🚀 [\#90](https://github.com/feathersjs/errors/pull/90) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+- Update sinon to the latest version 🚀 [\#89](https://github.com/feathersjs/errors/pull/89) ([greenkeeper[bot]](https://github.com/apps/greenkeeper))
+
 ## [v2.9.2](https://github.com/feathersjs/errors/tree/v2.9.2) (2017-09-05)
 [Full Changelog](https://github.com/feathersjs/errors/compare/v2.9.1...v2.9.2)
 
