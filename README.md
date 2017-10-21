@@ -68,6 +68,6 @@ var validationErrors = new errors.BadRequest({errors: {email: 'Invalid Email'} }
 
 ## License
 
-Copyright (c) 2016 Feathers Contributors
+Copyright (c) 2017 Feathers Contributors
 
 Licensed under the [MIT license](LICENSE).
